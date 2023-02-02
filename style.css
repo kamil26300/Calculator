@@ -1,0 +1,187 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	font-family: Gotham Rounded, sans-serif;
+	font-weight: normal;
+}
+
+body {
+	padding: 0;
+	margin: 0;
+	background: rgba(0, 0, 0, 0.9);
+	padding: 20px;
+}
+
+.calc_grid {
+	position: relative;
+}
+
+.tog {
+	position: relative;
+	display: flex;
+	height: 64px;
+	padding: 15px;
+}
+
+.pi {
+	position: absolute;
+	background-color: rgba(0, 0, 0, 0);
+	color: #f0f0f0;
+	border: #f0f0f0 1px solid;
+	border-radius: 50%;
+	height: 34px;
+	width: 34px;
+	font-weight: bold;
+	font-size: 1.2rem;
+	left: 50%;
+}
+
+.pi:hover {
+	background-color: #f0f0f0;
+	color: rgba(0, 0, 0);
+}
+
+.made {
+	color: #f0f0f0;
+	font-weight: bold;
+	align-self: center;
+}
+
+.switch {
+	position: absolute;
+	display: inline-block;
+	width: 60px;
+	height: 34px;
+	right: 15px;
+}
+
+.switch input {
+	opacity: 0;
+	width: 0;
+	height: 0;
+}
+
+.slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	transition: 0.3s;
+}
+
+.slider:before {
+	position: absolute;
+	content: "";
+	height: 26px;
+	width: 26px;
+	left: 4px;
+	bottom: 4px;
+	background-color: #f0f0f0;
+	transition: 0.3s;
+}
+
+input:checked + .slider {
+	background-color: #f0f0f0;
+	border: 1px rgb(0, 0, 0) solid;
+}
+
+input:checked + .slider:before {
+	transform: translateX(26px);
+	background-color: rgb(0, 0, 0);
+}
+
+.slider.round {
+	border: 1px #f0f0f0 solid;
+	border-radius: 34px;
+}
+
+.slider.round:before {
+	border-radius: 50%;
+}
+
+.main {
+	position: relative;
+	display: grid;
+	justify-content: center;
+	align-content: center;
+	grid-template-columns: repeat(4, 100px);
+	grid-template-rows: minmax(120px, auto) repeat(5, 100px);
+}
+
+.main > button {
+	cursor: pointer;
+	font-size: 2rem;
+	border: 1.5px solid #f0f0f0;
+	outline: none;
+	color: #f0f0f0;
+	background-color: rgba(83, 79, 79, 0.5);
+	border-radius: 15px;
+}
+
+.main > button:hover {
+	background-color: rgba(83, 79, 79, 0.9);
+}
+
+.span_two {
+	grid-column: span 2;
+}
+
+.output {
+	grid-column: 1 / -1;
+	background-color: #f0f0f0;
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-around;
+	flex-direction: column;
+	padding: 10px;
+	word-wrap: break-word;
+	word-break: break-all;
+	border-radius: 15px;
+}
+
+.previous_operand {
+	color: rgb(50, 50, 50);
+	font-size: 1.5rem;
+	font-weight: bold;
+}
+
+.current_operand {
+	color: rgb(0, 0, 0);
+	font-size: 1.5rem;
+	font-weight: bold;
+}
+
+body.active {
+	background-color: #f0f0f0;
+}
+.main > button.active {
+	border: 1.5px solid rgba(83, 79, 79, 0.5);
+	color: rgba(0, 0, 0, 0.9);
+	background-color: #c5c5c5;
+}
+
+.main > button:hover.active {
+	background-color: rgba(166, 166, 166, 0.9);
+}
+
+.output.active {
+	background-color: rgba(128, 128, 128, 0.9);
+}
+
+.made.active {
+	color: rgba(0, 0, 0, 0.9);
+}
+
+.pi.active {
+	background-color: rgba(0, 0, 0, 0);
+	color: rgb(0, 0, 0);
+	border: rgb(0, 0, 0) 1px solid;
+}
+
+.pi:hover.active {
+	color: #f0f0f0;
+	background-color: rgba(0, 0, 0);
+}
