@@ -188,6 +188,13 @@ body.active {
 }
 
 .hide{
-	/* display: inline-block; */
 	display: none;
+}
+
+.hide.new{
+	display: inline-block;
+}
+
+.main.new{
+	grid-template-columns: repeat(5, 100px);
 }

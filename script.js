@@ -92,7 +92,7 @@ class Calculator {
 
 	updatePI() {
 		if (this.pi.innerText === "π") {
-			this.pi.innerText = "+"
+			this.pi.innerText = "+";
 		} else {
 			this.pi.innerText = "π";
 		}
@@ -110,7 +110,18 @@ const body = document.querySelector("body");
 const toggle = document.querySelector("input");
 const output = document.querySelector("[data-output]");
 const made = document.querySelector("[data-made]");
+
 const pi = document.querySelector("[data-pi]");
+const main = document.querySelector("[data-main]");
+const hideButtons = document.querySelectorAll("[data-hide]");
+
+// Hide buttons
+pi.onclick = function () {
+	main.classList.toggle("new");
+	hideButtons.forEach((button) => {
+		button.classList.toggle("new");
+	});
+};
 
 // Dark Mode
 toggle.onclick = function () {
@@ -136,7 +147,7 @@ const calculator = new Calculator(previousOperandText, currentOperandText, pi);
 //Update pi on click π -> +
 pi.addEventListener("click", () => {
 	calculator.updatePI();
-})
+});
 
 numberButtons.forEach((button) => {
 	button.addEventListener("click", () => {
