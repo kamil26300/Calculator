@@ -1,7 +1,8 @@
 class Calculator {
-	constructor(previousOperandText, currentOperandText) {
+	constructor(previousOperandText, currentOperandText, pi) {
 		this.currentOperandText = currentOperandText;
 		this.previousOperandText = previousOperandText;
+		this.pi = pi;
 		this.clear();
 	}
 
@@ -88,6 +89,14 @@ class Calculator {
 			this.previousOperandText.innerText = "";
 		}
 	}
+
+	updatePI() {
+		if (this.pi.innerText === "π") {
+			this.pi.innerText = "+"
+		} else {
+			this.pi.innerText = "π";
+		}
+	}
 }
 
 const numberButtons = document.querySelectorAll("[data-number]");
@@ -122,7 +131,12 @@ toggle.onclick = function () {
 	pi.classList.toggle("active");
 };
 
-const calculator = new Calculator(previousOperandText, currentOperandText);
+const calculator = new Calculator(previousOperandText, currentOperandText, pi);
+
+//Update pi on click π -> +
+pi.addEventListener("click", () => {
+	calculator.updatePI();
+})
 
 numberButtons.forEach((button) => {
 	button.addEventListener("click", () => {
