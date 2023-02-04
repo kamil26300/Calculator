@@ -17,9 +17,13 @@ class Calculator {
 	}
 
 	appendNumber(number) {
-		if (number === "." && this.currentOperand.includes(".")) return;
-		this.currentOperand =
-			this.currentOperand.toString() + number.toString();
+		if (
+			(number === "." && this.currentOperand.includes(".")) ||
+			(number === "π" && this.currentOperand.includes("π")) ||
+			(number === "e" && this.currentOperand.includes("e"))
+		)
+			return;
+			this.currentOperand = this.currentOperand.toString() + number.toString();
 	}
 
 	chooseOperation(operation) {
@@ -34,8 +38,22 @@ class Calculator {
 
 	compute() {
 		let computation;
-		const prev = parseFloat(this.previousOperand);
-		const curr = parseFloat(this.currentOperand);
+		let prev;
+		if (this.previousOperand == "e")
+			prev = 2.718281828;
+		else if (this.previousOperand == "π")
+			prev = 3.14159;	
+		else 
+			prev = parseFloat(this.previousOperand);
+		
+		let curr;
+		if (this.currentOperand == "e")
+			curr = 2.718281828;
+		else if (this.currentOperand == "π")
+			curr = 3.14159;
+		else
+			curr = parseFloat(this.currentOperand);
+		
 		if (isNaN(prev) || isNaN(curr)) return;
 
 		switch (this.operation) {
@@ -60,22 +78,26 @@ class Calculator {
 	}
 
 	getDisplay(number) {
-		const stringNumber = number.toString();
-		const integerDigits = parseFloat(stringNumber.split(".")[0]);
-		const decimalDigits = stringNumber.split(".")[1];
-		let integerDisplay;
-		if (isNaN(integerDigits)) {
-			integerDisplay = "";
-		} else {
-			integerDisplay = integerDigits.toLocaleString("en", {
-				maximumFractionDigits: 0,
-			});
-		}
+		if (number != "π" && number != "e") {
+			const stringNumber = number.toString();
+			const integerDigits = parseFloat(stringNumber.split(".")[0]);
+			const decimalDigits = stringNumber.split(".")[1];
+			let integerDisplay;
+			if (isNaN(integerDigits)) {
+				integerDisplay = "";
+			} else {
+				integerDisplay = integerDigits.toLocaleString("en", {
+					maximumFractionDigits: 0,
+				});
+			}
 
-		if (decimalDigits != null) {
-			return `${integerDisplay}.${decimalDigits}`;
+			if (decimalDigits != null) {
+				return `${integerDisplay}.${decimalDigits}`;
+			} else {
+				return integerDisplay;
+			}
 		} else {
-			return integerDisplay;
+			return number;
 		}
 	}
 
@@ -110,6 +132,9 @@ const body = document.querySelector("body");
 const toggle = document.querySelector("input");
 const output = document.querySelector("[data-output]");
 const made = document.querySelector("[data-made]");
+const unif = document.querySelectorAll("[data-unif]");
+const unib = document.querySelectorAll("[data-unib]");
+const unibo = document.querySelector("[data-unibo]");
 
 const pi = document.querySelector("[data-pi]");
 const main = document.querySelector("[data-main]");
@@ -132,8 +157,6 @@ toggle.onclick = function () {
 	operationButtons.forEach((button) => {
 		button.classList.toggle("active");
 	});
-	// previousOperandText.classList.toggle("active");
-	// currentOperandText.classList.toggle("active");
 	ACButton.classList.toggle("active");
 	deleteButton.classList.toggle("active");
 	equalsButton.classList.toggle("active");
@@ -177,3 +200,10 @@ deleteButton.addEventListener("click", () => {
 	calculator.delete();
 	calculator.updateDisplay();
 });
+
+// unif.forEach((button) => {
+// 	button.addEventListener("click", () => {
+// 		calculator.appendNumber(button.innerText);
+// 		calculator.updateDisplay();
+// 	});
+// });

@@ -114,7 +114,7 @@ input:checked + .slider:before {
 
 .main > button {
 	cursor: pointer;
-	font-size: 2rem;
+	font-size: 1.6rem;
 	border: 1.5px solid #f0f0f0;
 	outline: none;
 	color: #f0f0f0;
@@ -196,5 +196,10 @@ body.active {
 }
 
 .main.new{
-	grid-template-columns: repeat(5, 100px);
+	grid-template-columns: repeat(6, 100px);
+}
+
+.ol{
+	display: inline-block;
+	text-decoration: overline;
 }
